@@ -650,6 +650,10 @@ def main():
             if p and p not in allowed_paths:
                 allowed_paths.append(p)
 
+        from acestep.ui.gradio.interfaces import get_launch_presentation
+
+        presentation = get_launch_presentation(demo)
+
         # Enable API endpoints if requested
         if args.enable_api:
             print("Enabling API endpoints...")
@@ -666,6 +670,7 @@ def main():
                 inbrowser=False,
                 auth=auth,
                 allowed_paths=allowed_paths,  # include output_dir + user-provided
+                **presentation,
             )
 
             # Now add API routes to Gradio's FastAPI app (app is available after launch)
@@ -696,6 +701,7 @@ def main():
                 inbrowser=False,
                 auth=auth,
                 allowed_paths=allowed_paths,  # include output_dir + user-provided
+                **presentation,
             )
     except Exception as e:
         print(f"Error launching Gradio: {e}", file=sys.stderr)
