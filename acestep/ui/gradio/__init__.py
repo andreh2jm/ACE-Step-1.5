@@ -5,7 +5,7 @@ submodules that do not need gradio itself (e.g. the headless helpers used by
 ``acestep.api_server``) does not require the gradio package to be installed.
 """
 
-__all__ = ["create_gradio_interface"]
+__all__ = ["create_gradio_interface", "get_launch_presentation"]
 
 
 def __getattr__(name):
@@ -13,6 +13,10 @@ def __getattr__(name):
         from acestep.ui.gradio.interfaces import create_gradio_interface
 
         return create_gradio_interface
+    if name == "get_launch_presentation":
+        from acestep.ui.gradio.interfaces import get_launch_presentation
+
+        return get_launch_presentation
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 

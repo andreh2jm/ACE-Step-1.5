@@ -65,7 +65,7 @@ def create_generation_tab_section(
     )
     initial_mode_choices = GENERATION_MODES_BASE if is_pure_base_model else GENERATION_MODES_TURBO
 
-    with gr.Group():
+    with gr.Group(elem_classes=["create-panel"]):
         mode_controls = build_mode_selector_controls(initial_mode_choices)
         hidden_state_controls = build_hidden_generation_state()
         simple_mode_controls = build_simple_mode_controls()
